@@ -66,6 +66,17 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 **NIM:** 24.12.3154
+
 **Nama:** Mitashya Calysnagefin Titansilah
 
-https://3154-db-main-4i4rud.free.laravel.cloud/
+---
+
+**Halaman Sisi Admin:**
+1. **Halaman Dashboard:** https://3154-db-main-4i4rud.free.laravel.cloud/admin
+2. **Halaman Event:** https://3154-db-main-4i4rud.free.laravel.cloud/admin/events
+3. **Halaman Transaksi:** https://3154-db-main-4i4rud.free.laravel.cloud/admin/transactions
+
+**Halaman Sisi User:**
+4. **Halaman Beranda:** https://3154-db-main-4i4rud.free.laravel.cloud/
+5. **Halaman Detail Event:** https://3154-db-main-4i4rud.free.laravel.cloud/detail-event
+6. **Halaman Checkout:** https://3154-db-main-4i4rud.free.laravel.cloud/checkout
