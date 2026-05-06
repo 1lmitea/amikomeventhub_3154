@@ -44,10 +44,10 @@ use App\Http\Controllers\Admin\CategoryController;
 // --- Rute Sisi Admin ---
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/events', [AdminEventController::class, 'indexAdmin'])->name('events.index');
-    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 
-    // Rute untuk Laporan Transaksi ---
+    Route::resource('events', AdminEventController::class);
+
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
     Route::get('/transactions', function () {
         return view('admin.transactions');
     });
