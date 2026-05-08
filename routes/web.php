@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 // --- Halaman Utama (Home) ---
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // --- Rute Wajib  ---
 Route::get('/profil', function () {
