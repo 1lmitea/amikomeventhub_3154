@@ -2,6 +2,14 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EventController as AdminEventController;
+use App\Http\Controllers\Admin\CategoryController;
+
+Route::get('/login', function () {
+    return redirect()->route('admin.login');
+})->name('login');
 
 // --- Halaman Utama (Home) ---
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -36,18 +44,24 @@ Route::get('/ticket', function () {
     return view('ticket');
 });
 
-use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\EventController as AdminEventController;
-use App\Http\Controllers\Admin\CategoryController;
-
 // --- Rute Sisi Admin ---
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('events', AdminEventController::class);
+    // 1. Rute Login bebas akses (TIDAK dijaga middleware)
+    Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+    Route::post('login', [AuthController::class, 'login'])->name('login.post');
+    Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
-    Route::get('/transactions', function () {
-        return view('admin.transactions');
+    // 2. Mengamankan Route Administrasi di balik tembok (Middleware)
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('events', AdminEventController::class);
+
+        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+
+        Route::get('/transactions', function () {
+            return view('admin.transactions');
+        });
     });
 });
