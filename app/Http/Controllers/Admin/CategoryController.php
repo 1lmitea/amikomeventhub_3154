@@ -1,11 +1,59 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    public function index() { 
-        return view('admin.categories.index'); 
+    public function index()
+    {
+        $categories = Category::latest()->paginate(10);
+        return view('admin.categories.index', compact('categories'));
+    }
+
+    public function create()
+    {
+        return view('admin.categories.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate(['name' => 'required|string|max:255']);
+
+        Category::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name) // Otomatis bikin slug, misal: "Seminar IT" -> "seminar-it"
+        ]);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil ditambahkan.');
+    }
+
+    // Menampilkan form edit yang sudah terisi data lama
+    public function edit(Category $category)
+    {
+        return view('admin.categories.edit', compact('category'));
+    }
+
+    // Memproses perubahan data ke database
+    public function update(Request $request, Category $category)
+    {
+        $request->validate(['name' => 'required|string|max:255']);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => \Illuminate\Support\Str::slug($request->name) // Update slug-nya juga
+        ]);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil diperbarui.');
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return redirect()->route('admin.categories.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }

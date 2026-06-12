@@ -6,7 +6,9 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController as AdminEventController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\EventController;
 Route::get('/login', function () {
     return redirect()->route('admin.login');
 })->name('login');
@@ -32,13 +34,10 @@ Route::get('/kontak', function () {
     return view('kontak');
 });
 
-Route::get('/detail-event', function () {
-    return view('event-detail');
-});
+Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
 
-Route::get('/checkout', function () {
-    return view('checkout');
-});
+Route::get('/checkout/{event}', [CheckoutController::class, 'create'])->name('checkout.create');
+Route::post('/checkout/{event}', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Route::get('/ticket', function () {
     return view('ticket');
@@ -58,10 +57,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
         Route::resource('events', AdminEventController::class);
 
-        Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+        Route::resource('categories', CategoryController::class);
 
-        Route::get('/transactions', function () {
-            return view('admin.transactions');
+        Route::get('transactions', [TransactionController::class, 'index'])->name('transactions.index');
         });
     });
-});
