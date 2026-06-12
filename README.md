@@ -71,16 +71,21 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ---
 
-## Halaman Sisi Admin
+## Halaman Sisi Admin (Membutuhkan Login)
 
-1. **Halaman Dashboard:** https://3154-db-main-4i4rud.free.laravel.cloud/admin
-2. **Halaman Event:** https://3154-db-main-4i4rud.free.laravel.cloud/admin/events
-3. **Halaman Transaksi:** https://3154-db-main-4i4rud.free.laravel.cloud/admin/transactions
+1. **Halaman Login Admin:** https://3154-db-main-4i4rud.free.laravel.cloud/admin/login
+2. **Halaman Dashboard:** https://3154-db-main-4i4rud.free.laravel.cloud/admin
+3. **Halaman Kelola Kategori:** https://3154-db-main-4i4rud.free.laravel.cloud/admin/categories
+4. **Halaman Kelola Event:** https://3154-db-main-4i4rud.free.laravel.cloud/admin/events
+5. **Halaman Laporan Transaksi:** https://3154-db-main-4i4rud.free.laravel.cloud/admin/transactions
 
-## Halaman Sisi User
+## Halaman Sisi User (Publik)
 
-4. **Halaman Beranda:** https://3154-db-main-4i4rud.free.laravel.cloud/
-5. **Halaman Detail Event:** https://3154-db-main-4i4rud.free.laravel.cloud/detail-event
-6. **Halaman Checkout:** https://3154-db-main-4i4rud.free.laravel.cloud/checkout
-7. **Halaman Tiket:** https://3154-db-main-4i4rud.free.laravel.cloud/ticket
+6. **Halaman Beranda:** https://3154-db-main-4i4rud.free.laravel.cloud/
+7. **Halaman Detail Event (Dinamis):** https://3154-db-main-4i4rud.free.laravel.cloud/events/1
+8. **Halaman Checkout (Dinamis):** https://3154-db-main-4i4rud.free.laravel.cloud/checkout/1
+9. **Halaman Tiket:** https://3154-db-main-4i4rud.free.laravel.cloud/ticket
+
+> **Catatan Tambahan untuk Asisten/Dosen:**
+> Pada *link* Halaman Detail Event dan Checkout di atas, angka `1` di bagian akhir URL adalah contoh ID Event. Anda dapat menggantinya dengan ID event lain yang tersedia di *database* saat melakukan pengujian.
 
