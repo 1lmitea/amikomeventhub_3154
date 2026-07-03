@@ -47,6 +47,8 @@ Route::get('/payment/{order_id}', [\App\Http\Controllers\CheckoutController::cla
 
 Route::get('/success/{order_id}', [\App\Http\Controllers\CheckoutController::class, 'success'])->name('checkout.success');
 
+Route::post('/midtrans/callback', [\App\Http\Controllers\MidtransWebhookController::class, 'handle']);
+
 // --- Rute Sisi Admin ---
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
